@@ -7,7 +7,7 @@
 	import Login from './Login.svelte';
 	import EmployeeList from './EmployeeList.svelte';
 	import EditEmployee from './EditEmployee.svelte';
-	import { employees, fetchEmployees,deleteEmployee } from './stores.js';
+ 
   import CreateEmployee from './CreateEmployee.svelte';
 
 

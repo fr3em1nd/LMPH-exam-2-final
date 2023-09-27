@@ -1,16 +1,30 @@
 <script>
   import { onMount } from 'svelte';
   import { employees, fetchEmployees,deleteEmployee,fetchEmployee } from './stores.js';
+  import { calculateAge,calculateYearsMonthsHired } from './utils/string.js';
   import { push } from 'svelte-spa-router';
- 
+  import { userType } from './stores.js';
   onMount( () => {
  
     fetchEmployees()
 
-});
-</script>
+    jQuery(document).ready(function() {
+ 
+ new DataTable('#example');
 
-<table border=1>
+
+	 })
+
+});
+
+ 
+ 
+
+
+</script>
+<div class="container mt-5">
+<table id="example" class="table table-striped table-bordered display" style="width:100%">
+ 
   <thead>
     <tr>
       <th>Name</th>
@@ -27,19 +41,46 @@
         <td>{employee.firstName} {employee.lastName}</td>
         <td></td>
         <td></td>
-        <td></td>
-        <td></td>
+        <td>{calculateAge(employee.birthDate)}</td>
+        <td>{calculateYearsMonthsHired(employee.dateHired).years}y {calculateYearsMonthsHired(employee.dateHired).months}m </td>
         <td> 
+
+          {#if $userType === 'Admin'}
           <button 
+                    
           on:click={() => {
-          deleteEmployee(employee.id);
+        Swal.fire({
+        title: 'Are you sure?',
+        text: "Delete Employee",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete!',
+        }).then((result) => {
+        if (result.isConfirmed) {
+        Swal.fire(
+        'Deleted!',
+        'The employee has been deleted.',
+        'success'
+        )
+        deleteEmployee(employee.id);
+
+        }
+        })
+
           }}>Delete
           </button>
+
+          {/if}
           <button 
           on:click={() => {
+            
           fetchEmployee(employee.id);
           push('/edit-employees')
-          }}>Edit
+
+
+          }}>{$userType ==='Standard'? 'View':'Edit'}
           </button>
 
 
@@ -49,3 +90,4 @@
     {/each}
   </tbody>
 </table>
+ </div>

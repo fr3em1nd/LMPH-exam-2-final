@@ -16,14 +16,13 @@ const typeDefs = gql`
 
    type AddressInfo {
     id: ID!
-    employeeId: String!
     detail: String!
     detail2: String!
     isDefault: Boolean!
     }
 
     type Employee {
-    id: String!
+    id: ID!
     firstName: String!
     lastName: String!
     middleName: String!
@@ -48,14 +47,14 @@ const typeDefs = gql`
     addContactToEmployee(employeeId: ID!, detail: String!, isDefault: Boolean!): ContactInfo
     updateContact(employeeId: ID!, contactId: ID!, detail: String!, isDefault: Boolean!): ContactInfo
     deleteContact(employeeId: ID!, contactId: ID!): Boolean
-    addAddressToEmployee(id: ID!, employeeId: String!, detail: String!, detail2: String!, isDefault: Boolean!): AddressInfo
+    addAddressToEmployee(employeeId: ID!, detail: String!, detail2: String!, isDefault: Boolean!): AddressInfo
     updateAddress(employeeId: ID!, addressId: ID!, detail: String!, isDefault: Boolean!): AddressInfo
     deleteAddress(employeeId: ID!, addressId: ID!): Boolean
   }
 `;
 
 const employees = [
-   
+    // Sample employees here
 ];
 
 const users = [
@@ -70,8 +69,8 @@ const resolvers = {
         employee: (_, { id }) => employees.find(emp => emp.id === id),
     },
     Mutation: {
-        addEmployee: (_, { id,firstName, lastName, middleName, birthDate,gender,maritalStatus,position,dateHired }) => {
-            const newEmployee = { id, firstName, lastName, middleName, birthDate, gender, maritalStatus, position, dateHired, contacts: [], addresses: []};
+        addEmployee: (_, { firstName, lastName, middleName, birthDate,gender,maritalStatus,position,dateHired }) => {
+            const newEmployee = { id: Date.now().toString(), firstName, lastName, middleName, birthDate, gender, maritalStatus, position, dateHired, contacts: [], addresses: []};
             employees.push(newEmployee);
             return newEmployee;
         },
@@ -117,7 +116,7 @@ const resolvers = {
         const employee = employees.find(emp => emp.id === employeeId);
         if (!employee) throw new Error('Employee not found');
 
-        const newAddress = { id: Date.now().toString(), employeeId, detail, detail2, isDefault };
+        const newAddress = { id: Date.now().toString(), detail, detail2, isDefault };
         if (isDefault) {
             employee.addresses.forEach(address => address.isDefault = false);
         }

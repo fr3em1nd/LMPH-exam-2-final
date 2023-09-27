@@ -58,6 +58,7 @@ export async function fetchEmployee(employeeId) {
             addresses {
               id
               detail
+              detail2
               isDefault
             }
           }
