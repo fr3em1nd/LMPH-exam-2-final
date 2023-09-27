@@ -59,7 +59,9 @@ frontend/ - contains Svelte setup
 
 
  README.md
+ 
  backend
+ 
     --Dockerfile (backend dockerfile)
     --index.js
     --node_modules
@@ -67,8 +69,10 @@ frontend/ - contains Svelte setup
     --package.json
 
  docker-compose.yml (mind docker composer)
+ 
 
  frontend
+ 
     --Dockerfile (frontend dockerfile)
     --README.md
     --nginx.conf
