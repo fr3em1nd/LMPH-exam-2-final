@@ -22,6 +22,7 @@
     "@apollo/client": "^3.8.4",
     "graphql": "^16.8.1",
     "sirv-cli": "^2.0.0",
-    "svelte-spa-router": "^3.3.0"
+    "svelte-spa-router": "^3.3.0",
+    "sweetalert2": "^11.7.31"
   }
 }

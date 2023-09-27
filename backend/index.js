@@ -53,9 +53,39 @@ const typeDefs = gql`
   }
 `;
 
-const employees = [
-    // Sample employees here
-];
+ 
+const employees = [];
+
+const firstNames = ['Solomon', 'Aria', 'Lucas', 'Ella', 'Mason', 'Ava', 'Liam', 'Mia', 'Noah', 'Amelia', 'Oliver', 'Harper', 'Ethan', 'Evelyn', 'Sebastian', 'Abigail', 'Caleb', 'Ella', 'Logan', 'Scarlett', 'Benjamin', 'Grace', 'Daniel', 'Lily', 'Owen', 'Riley', 'Jackson', 'Zoe', 'Wyatt', 'Lillian'];
+
+const lastNames = ['Monotilla', 'Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson', 'Clark', 'Rodriguez', 'Lewis', 'Lee', 'Walker', 'Hall', 'Allen', 'Young', 'Hernandez'];
+
+const middleNames = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+const genders = ['male', 'female'];
+const maritalStatuses = ['single', 'married', 'divorced', 'widowed'];
+const positions = ['developer', 'designer', 'manager', 'analyst', 'engineer'];
+
+function getRandomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+for (let i = 1; i <= 30; i++) {
+    const employee = {
+        id: i.toString(),
+        firstName: getRandomElement(firstNames),
+        lastName: getRandomElement(lastNames),
+        middleName: getRandomElement(middleNames),
+        birthDate: `19${85 + (i % 15)}-08-31`,
+        gender: getRandomElement(genders),
+        maritalStatus: getRandomElement(maritalStatuses),
+        position: getRandomElement(positions),
+        dateHired: `20${10 + (i % 10)}-08-31`
+    };
+    employees.push(employee);
+}
+
+
 
 const users = [
     { id: '1', username: 'admin', password: 'admin', type: 'Admin' },

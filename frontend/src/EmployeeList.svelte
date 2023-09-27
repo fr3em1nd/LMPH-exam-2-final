@@ -1,29 +1,24 @@
 <script>
   import { onMount } from 'svelte';
-  import { employees, fetchEmployees,deleteEmployee,fetchEmployee } from './stores.js';
+  import { employees, fetchEmployees,deleteEmployee,fetchEmployee,userType } from './stores.js';
   import { calculateAge,calculateYearsMonthsHired } from './utils/string.js';
   import { push } from 'svelte-spa-router';
-  import { userType } from './stores.js';
+  import Swal from 'sweetalert2';
   onMount( () => {
- 
     fetchEmployees()
-
     jQuery(document).ready(function() {
- 
- new DataTable('#example');
-
-
+      new DataTable('#employeeListView');
 	 })
-
 });
 
- 
- 
-
+if($userType===null){
+    push('/');
+  }
 
 </script>
+
 <div class="container mt-5">
-<table id="example" class="table table-striped table-bordered display" style="width:100%">
+<table id="employeeListView" class="table table-striped table-bordered display" style="width:100%">
  
   <thead>
     <tr>
@@ -42,7 +37,7 @@
         <td></td>
         <td></td>
         <td>{calculateAge(employee.birthDate)}</td>
-        <td>{calculateYearsMonthsHired(employee.dateHired).years}y {calculateYearsMonthsHired(employee.dateHired).months}m </td>
+        <td>{calculateYearsMonthsHired(employee.dateHired).years}y {calculateYearsMonthsHired(employee.dateHired).months}m</td>
         <td> 
 
           {#if $userType === 'Admin'}
@@ -60,9 +55,9 @@
         }).then((result) => {
         if (result.isConfirmed) {
         Swal.fire(
-        'Deleted!',
-        'The employee has been deleted.',
-        'success'
+          'Deleted!',
+          'The employee has been deleted.',
+          'success'
         )
         deleteEmployee(employee.id);
 
