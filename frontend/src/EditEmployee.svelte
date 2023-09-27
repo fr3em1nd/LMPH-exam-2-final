@@ -45,6 +45,40 @@ function handleInput(event) {
   }
 
 
+  function addInputField() {
+    inputCount++;
+
+    const inputContainer = document.getElementById('inputContainer');
+
+    // Create new input group
+    const inputGroup = document.createElement('div');
+    inputGroup.className = 'input-group mt-3';
+
+    // Create new input element
+    const inputElement = document.createElement('input');
+    inputElement.type = 'text';
+    inputElement.className = 'form-control';
+    inputElement.placeholder = `Input ${inputCount}`;
+
+    // Create input group append element (optional, for additional styling or buttons/icons)
+    const inputGroupAppend = document.createElement('div');
+    inputGroupAppend.className = 'input-group-append';
+
+    // Create a button to remove the input field (optional)
+    const removeButton = document.createElement('button');
+    removeButton.className = 'btn btn-outline-danger';
+    removeButton.innerText = 'X';
+    removeButton.onclick = function() {
+        inputContainer.removeChild(inputGroup);
+    };
+
+    // Append everything together
+    inputGroupAppend.appendChild(removeButton);
+    inputGroup.appendChild(inputElement);
+    inputGroup.appendChild(inputGroupAppend);
+    inputContainer.appendChild(inputGroup);
+}
+
 </script>
 
 <div class="container mt-5">
@@ -175,41 +209,130 @@ function handleInput(event) {
         />
     </div>
 
+        <!-- Contact Info -->
+        <div class="form-group">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <h3>Contact Info:</h3>
+                </div>
+                <div class="col-5">
+                    <label for="details">Address 1:</label>
+                    <input
+                        disabled={$userType === "Standard"}
+                        value={"test"}
+                        type="text"
+                        class="form-control"
+                        id="details[]"
+                        name="details[]"
+                    />
+                </div>
+          
+    
+                <div class="col-2">
+                    Primary?
+                    <br />
+                    <input
+                    disabled={$userType === "Standard"}
+                        class="form-check-input  mt-2"
+                        type="checkbox"
+                        value=""
+                        id="defaultCheck1"
+                    />
+                   
+                </div>
+            </div>
+            <div class="row">
+            <div class="col-12">
+
+                <button  disabled={$userType === "Standard"} class='btn btn-info'>Update Contact Info</button>  <button  disabled={$userType === "Standard"} class='btn btn-info'>Add</button>
+            </div>
+
+            </div>
+        </div>
+
+    <!-- Address Info -->
+    <div class="form-group">
+        <div class="row">
+            <div class="col-12 mt-3">
+                <h3>Address Info:</h3>
+            </div>
+            <div class="col-5">
+                <label for="details">Address 1:</label>
+                <input
+                    disabled={$userType === "Standard"}
+                    value={"test"}
+                    type="text"
+                    class="form-control"
+                    id="details[]"
+                    name="details[]"
+                />
+            </div>
+            <div class="col-5">
+                <label for="details2">Address 2:</label>
+                <input
+                    disabled={$userType === "Standard"}
+                    value={"test"}
+                    type="text"
+                    class="form-control"
+                    id="details2[]"
+                    name="details2[]"
+                />
+            </div>
+
+            <div class="col-2">
+                Primary?
+                <br />
+                <input
+                disabled={$userType === "Standard"}
+                    class="form-check-input  mt-2"
+                    type="checkbox"
+                    value=""
+                    id="defaultCheck1"
+                />
+                
+                
+            </div>
+            
+        </div>
+        <div class="col-12">
+
+            <button class='btn btn-info'  disabled={$userType === "Standard"}>Update Address Info</button>  <button  disabled={$userType === "Standard"} class='btn btn-info'>Add</button>
+        </div>
+    </div>
+
     <!-- Submit Button -->
     <button
         disabled={$userType === "Standard"}
-        class="btn btn-primary"
+        class="btn btn-primary mt-3"
         on:click={async () => {
             await updateEmployee(
                 $employee.id,
                 LocalfirstName || $employee.firstName,
-                LocallastName|| $employee.lastName,
-                LocalmiddleName|| $employee.middleName,
-                LocalbirthDate|| $employee.birthDate,
-                Localgender|| $employee.gender,
-                LocalmaritalStatus|| $employee.maritalStatus,
-                Localposition|| $employee.position,
-                LocaldateHired|| $employee.dateHired
+                LocallastName || $employee.lastName,
+                LocalmiddleName || $employee.middleName,
+                LocalbirthDate || $employee.birthDate,
+                Localgender || $employee.gender,
+                LocalmaritalStatus || $employee.maritalStatus,
+                Localposition || $employee.position,
+                LocaldateHired || $employee.dateHired
             );
             Swal.fire("Employee Data updated!");
             push("/employees");
 
-
-  LocalfirstName = null;
-  LocallastName = null;
-  LocalmiddleName = null;
-  LocalbirthDate = null;
-  Localgender = null;
-  LocalmaritalStatus= null;
-  Localposition= null;
-  LocaldateHired= null;
-  
+            LocalfirstName = null;
+            LocallastName = null;
+            LocalmiddleName = null;
+            LocalbirthDate = null;
+            Localgender = null;
+            LocalmaritalStatus = null;
+            Localposition = null;
+            LocaldateHired = null;
         }}>Save Changes</button
     >
 
     {#if $userType === "Admin"}
         <button
-            class="btn btn-warning"
+            class="btn btn-warning mt-3"
             on:click={() => {
                 Swal.fire({
                     title: "Are you sure?",
