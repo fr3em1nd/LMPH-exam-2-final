@@ -45,7 +45,7 @@ we're using Svelte's store to directly manage ApolloClient's data
 
 ## Database: 
 
-We're using Apollo's GraphQL for maintainability.
+We're using MongoDB Apollo's GraphQL for frontend maintainability.
 
 ## File Structure:
 
@@ -81,6 +81,11 @@ http://localhost:9000/ - Sonarqube frontend
 mongodb : 27017 - mongodb port and instance
 
 postgre:12 db-1 - postgre instance for sonarqube db
+
+## Test Data:
+
+Test data is generated on the server side randomly.
+
 
 
 
