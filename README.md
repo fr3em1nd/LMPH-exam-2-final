@@ -59,14 +59,13 @@ frontend/ - contains Svelte setup
 
 run this command to execute sonar-scanner:
 
-``
+`
 sonar-scanner \
   -Dsonar.projectKey=svelte \
   -Dsonar.sources=. \
   -Dsonar.host.url=http://localhost:9000 \
   -Dsonar.login=sqp_e92d82f83e382125c5fee67af4f6a832b8124be5
-
-``
+`
 
 sonarqube URL: http://localhost:9000/
 
