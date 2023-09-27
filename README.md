@@ -49,9 +49,6 @@ We're using MongoDB Apollo's GraphQL for frontend maintainability.
 
 ## File Structure:
 
-backend/ - contains apollo server
-
-frontend/ - contains Svelte setup
 
 backend/ - contains apollo server
 
