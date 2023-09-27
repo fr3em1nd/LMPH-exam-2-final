@@ -53,6 +53,34 @@ backend/ - contains apollo server
 
 frontend/ - contains Svelte setup
 
+backend/ - contains apollo server
+
+frontend/ - contains Svelte setup
+
+
+ README.md
+ backend
+    --Dockerfile (backend dockerfile)
+    --index.js
+    --node_modules
+    --package-lock.json
+    --package.json
+
+ docker-compose.yml (mind docker composer)
+
+ frontend
+    --Dockerfile (frontend dockerfile)
+    --README.md
+    --nginx.conf
+    --node_modules
+    --package-lock.json
+    --package.json
+    --public
+    --ollup.config.js
+    --scripts
+    --src
+ 
+
 
 ## Unit Testing:
 
