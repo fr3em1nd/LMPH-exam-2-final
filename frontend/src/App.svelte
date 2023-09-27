@@ -1,18 +1,53 @@
-<!-- src/App.svelte -->
-<script>
+ 
+
+  <script>
+ 
+	 import Router,{ push } from 'svelte-spa-router';
+	import { userType } from './stores.js';
 	import Login from './Login.svelte';
-  
-	let isLoggedIn = false;
-  
-	function handleLogin() {
-	  isLoggedIn = true;
+	import EmployeeList from './EmployeeList.svelte';
+	import EditEmployee from './EditEmployee.svelte';
+	import { employees, fetchEmployees,deleteEmployee } from './stores.js';
+  import CreateEmployee from './CreateEmployee.svelte';
+
+
+   const routes = {
+    '/': Login,
+    '/employees': EmployeeList,
+    '/edit-employees': EditEmployee,
+ 
+    '/create': CreateEmployee,
+  }
+
+  let LocalUserType = localStorage.getItem('userType');
+
+  if(LocalUserType){
+	userType.set(LocalUserType); // set local user if defined.
+  }
+
+	function logout() {
+	  localStorage.removeItem('authToken');
+	  localStorage.removeItem('userType');
+	  userType.set(null);
+	  push('#/')
 	}
   </script>
   
-  {#if !isLoggedIn}
-	<Login on:logged-in={handleLogin} />
-  {:else}
-	<h2>Welcome!</h2>
-	<p>You're now logged in.</p>
-  {/if}
-  
+  <nav>
+	{#if $userType}
+	  <button on:click={logout}>Logout</button>
+	{/if}
+	{#if $userType === 'Standard'}
+	<button on:click={() => push('/employees')}>View Employees</button>
+	{/if}
+	{#if $userType === 'Admin'}
+	<a href="#/create">Add Employee</a>
+ 
+	<a href="#/employees"> View Employees</a>
+	{/if}
+
+ 
+	
+  </nav>
+
+  <Router {routes} />
