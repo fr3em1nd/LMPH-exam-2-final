@@ -57,19 +57,31 @@ frontend/ - contains Svelte setup
 ## Unit Testing:
 
 
-run this command to execute sonar-scanner
-`
+run this command to execute sonar-scanner:
+
+``
 sonar-scanner \
   -Dsonar.projectKey=svelte \
   -Dsonar.sources=. \
   -Dsonar.host.url=http://localhost:9000 \
   -Dsonar.login=sqp_e92d82f83e382125c5fee67af4f6a832b8124be5
-`
+
+``
 
 sonarqube URL: http://localhost:9000/
 
 
-## Endpoints:
+## Endpoints & Databases:
 
 http://localhost:80/ - frontend
+
 http://localhost:4000/ - backend and Apollo playground
+
+http://localhost:9000/ - Sonarqube frontend
+
+mongodb : 27017 - mongodb port and instance
+
+postgre:12 db-1 - postgre instance for sonarqube db
+
+
+
