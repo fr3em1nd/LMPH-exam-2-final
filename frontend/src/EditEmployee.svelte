@@ -1,8 +1,7 @@
 <script>
-   import { employee } from './stores.js';
- 
-   import { userType } from './stores.js';
-  </script>
+ import { userType,deleteEmployee,employee } from './stores.js';
+ import { push } from 'svelte-spa-router';
+</script>
   
  
   
@@ -68,6 +67,36 @@
 
         <!-- Submit Button -->
         <button  disabled={$userType === 'Standard'} class="btn btn-primary">Save Changes</button>
+         
+        {#if $userType === 'Admin'}
+        <button 
+        class="btn btn-warning"
+        on:click={() => {
+      Swal.fire({
+      title: 'Are you sure?',
+      text: "Delete Employee",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete!',
+      }).then((result) => {
+      if (result.isConfirmed) {
+      Swal.fire(
+      'Deleted!',
+      'The employee has been deleted.',
+      'success'
+      )
+      deleteEmployee($employee.id);
+      push('/employees')
+      }
+      })
+
+        }}>Delete
+        </button>
+
+        {/if}
+
     
 </div>
 

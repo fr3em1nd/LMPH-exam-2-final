@@ -1,107 +1,66 @@
-# This repo is no longer maintained. Consider using `npm init vite` and selecting the `svelte` option or — if you want a full-fledged app framework — use [SvelteKit](https://kit.svelte.dev), the official application framework for Svelte.
+# Exam 1 - by Solomon
 
----
-
-# svelte app
-
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+## Technologies used:
+- Svelte 
+- Apollo
+- GraphQL
+- Javascript
+- Bootstrap
+- Docker
+- MongoDB
+- SonarQube
 
 
-## Get started
-
-Install the dependencies...
-
-```bash
-cd svelte-app
-npm install
-```
-
-...then start [Rollup](https://rollupjs.org):
-
-```bash
-npm run dev
-```
-
-Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
 
 
-## Single-page app mode
+## Docker Setup:
 
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
+to run Docker:
 
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
+`
+docker-compose up --build
+`
 
-```js
-"start": "sirv public --single"
-```
 
-## Using TypeScript
+/docker-compose.yml - this compiles both Dockerfiles on backend and frontend
 
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
+/frontend/DockerFile - basic Svelte setup
 
-```bash
-node scripts/setupTypeScript.js
-```
+/backend/DockerFile - Apollo setup mutations, Types and Resolvers
 
-Or remove the script via:
 
-```bash
-rm scripts/setupTypeScript.js
-```
+## State management:
 
-If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need to set up `@rollup/plugin-alias` to tell Rollup to resolve the aliases. For more info, see [this StackOverflow question](https://stackoverflow.com/questions/63427935/setup-tsconfig-path-in-svelte).
+we're using Svelte's store to directly manage ApolloClient's data
 
-## Deploying to the web
 
-### With [Vercel](https://vercel.com)
+## Database: 
 
-Install `vercel` if you haven't already:
+We're using Apollo's GraphQL for maintainability.
 
-```bash
-npm install -g vercel
-```
+## File Structure:
 
-Then, from within your project folder:
+backend/ - contains apollo server
 
-```bash
-cd public
-vercel deploy --name my-project
-```
+frontend/ - contains Svelte setup
 
-### With [surge](https://surge.sh/)
 
-Install `surge` if you haven't already:
+## Unit Testing:
 
-```bash
-npm install -g surge
-```
 
-Then, from within your project folder:
+run this command to execute sonar-scanner
+`
+sonar-scanner \
+  -Dsonar.projectKey=svelte \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=sqp_e92d82f83e382125c5fee67af4f6a832b8124be5
+`
 
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+sonarqube URL: http://localhost:9000/
+
+
+## Endpoints:
+
+http://localhost:80/ - frontend
+http://localhost:4000/ - backend and Apollo playground
