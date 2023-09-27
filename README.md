@@ -30,6 +30,13 @@ docker-compose up --build
 
 /backend/DockerFile - Apollo setup mutations, Types and Resolvers
 
+Once docker is running it should look like this:
+
+![image](https://github.com/fr3em1nd/LMPH-exam-2-final/assets/2801155/ff31a076-595b-4508-bede-bc7deef9e222)
+
+
+Docker have NGINX setup to expose port 80 on file nginx.conf
+
 
 ## State management:
 
