@@ -1,6 +1,7 @@
-# LMPH-exam-2-final
- 
-# Exam 1 - by Solomon
+# Svelte simple Employee management system
+
+
+This app is created on Svelte with storage capacity directly communicating to GraphQL.
 
 ## Technologies used:
 - Svelte 
