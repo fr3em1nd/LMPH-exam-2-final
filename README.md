@@ -116,6 +116,10 @@ postgre:12 db-1 - postgre instance for sonarqube db
 
 Test data is generated on the server side randomly.
 
+## Access:
+
+admin: admin / admin
+standard user: standard / standard
 
 
 
